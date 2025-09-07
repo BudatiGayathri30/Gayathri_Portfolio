@@ -1,0 +1,544 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(-45deg, #0d0d0d, #1a1a2e, #16213e, #0f3460);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 2px,
+    transparent 40px
+  );
+  z-index: 0;
+  pointer-events: none;
+  animation: moveLines 10s linear infinite;
+}
+
+@keyframes moveLines {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+/* ------------------- Header/Navbar ------------------- */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(26, 26, 26, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00c4cc;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #bbb;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00c4cc;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: #fff;
+  margin-bottom: 4px;
+  border-radius: 5px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00c4cc;
+}
+
+.profile-pic {
+  width: 50px; /* small circle */
+  height: 50px;
+  border-radius: 50%; /* makes it circular */
+  object-fit: cover; /* keeps image ratio */
+  margin-right: 15px; /* space between image & name */
+}
+
+/* ------------------- Sections ------------------- */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 2rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #00c4cc;
+}
+
+/* ------------------- Hero ------------------- */
+#hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 1rem;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: column;
+}
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid #00c4cc;
+  box-shadow: 0 0 20px rgba(0, 196, 204, 0.5);
+}
+
+.intro-text h1 {
+  font-size: 2.5rem;
+}
+
+#typed-text {
+  font-size: 28px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00e6ff, #ff00ff, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #00e6ff, 0 0 10px #00e6ff;
+  }
+  to {
+    text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  }
+}
+
+.cta-btn,
+.resume-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: #00c4cc;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+
+.cta-btn:hover,
+.resume-btn:hover {
+  background: #009ba5;
+  color: #fff;
+}
+
+/* ------------------- Skills ------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skill-card {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.skill-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 15px;
+  background: linear-gradient(45deg, #00c4cc, #ff00ff, #ffcc00);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.skill-card:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 196, 204, 0.4);
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+.skill-card img {
+  width: 60px; /* adjust as needed */
+  height: 60px;
+  object-fit: contain;
+  display: block;
+}
+
+/* NEW PART → grid for icons */
+.skill-card .icons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+  gap: 1rem;
+  justify-items: center;
+  margin-top: 1rem;
+}
+
+/* ------------------- Education & Experience Timeline ------------------- */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background: #00c4cc;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+}
+
+.timeline-item {
+  padding: 1rem 0;
+  position: relative;
+  width: 50%;
+  left: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+/* Timeline cards */
+.timeline-content {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Gradient hover effect */
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 15px;
+  background: linear-gradient(45deg, #00c4cc, #ff00ff, #ffcc00, #00e6ff);
+  background-size: 300% 300%;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  animation: gradientMove 5s linear infinite;
+  z-index: -1;
+}
+
+/* Arrow pointer */
+.timeline-content::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  border-width: 10px 0 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(26, 26, 26, 0.9);
+}
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+  left: -10px;
+  right: auto;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent rgba(26, 26, 26, 0.9) transparent transparent;
+}
+
+.timeline-content:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 196, 204, 0.4);
+}
+
+.timeline-content:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ------------------- Projects ------------------- */
+/* ------------------- Projects ------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #00c4cc, #ff00ff, #ffcc00, #00e6ff);
+  background-size: 300% 300%;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  animation: gradientMove 5s linear infinite;
+  z-index: -1;
+}
+
+.project-card:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 196, 204, 0.4);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-link {
+  display: block;
+  margin-top: 1rem;
+  color: #00c4cc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ------------------- Contact ------------------- */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.8rem;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background: rgba(26, 26, 26, 0.8);
+  color: #fff;
+}
+
+.contact-form button {
+  padding: 0.8rem;
+  background: #00c4cc;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background: #009ba5;
+}
+
+.btn-submit {
+  background: var(--primary-cyan, #00c4cc);
+  transition: background 0.3s, color 0.3s;
+}
+
+.btn-submit:hover {
+  background: var(--primary-pink, #ff00ff);
+  color: #fff;
+}
+
+.social-links {
+  text-align: center;
+}
+
+.social-links a {
+  margin: 0 1rem;
+  color: #00c4cc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ------------------- Footer ------------------- */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(26, 26, 26, 0.8);
+  color: #bbb;
+}
+
+/* ------------------- Media Queries ------------------- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #1a1a1a;
+    padding: 1rem 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero-content {
+    flex-direction: column;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    left: 0;
+    text-align: left;
+    padding-left: 40px;
+  }
+
+  .timeline-content::after {
+    left: -10px;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent rgba(26, 26, 26, 0.9) transparent transparent;
+  }
+}
